@@ -9,10 +9,28 @@
 <body>
     <ul>
     @foreach ($movies as $movie)
-        <li>タイトル: {{ $movie->title }}</li>
-        <div>
-            <img src={{ $movie->image_url }} alt="">
-        </div>
+        <table>
+            <tr>
+                <th>映画タイトル</th>
+                <th>画像URL</th>
+                <th>公開年</th>
+                <th>現在上映中かどうか</th>
+                <th>概要</th>
+            </tr>
+            <tr>
+                <td>{{ $movie->title }}</td>
+                <td>
+                    <img src={{ $movie->image_url }} alt="" width="40">
+                </td>
+                <td>{{ $movie->published_year }}</td>
+                @if ( $movie->is_showing )
+                <td>上映中</td>
+                @else
+                <td>上映予定</td>
+                @endif
+                <td>{{ $movie->description }}</td>
+            </tr>
+        </table>
     @endforeach
     </ul>
 </body>
