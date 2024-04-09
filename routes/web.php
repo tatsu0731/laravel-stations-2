@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PracticeController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,9 @@ Route::get('/', function () {
 // Route::get('/practice3', [PracticeController::class, 'sample3']);
 
 // Route::get('/getPractice', [PracticeController::class, 'getPractice']);
-
-// Route::get('/movies', [MovieController::class, 'index']);
-Route::get('admin/movies', [MovieController::class, 'index']);
+// 映画一覧の取得
+Route::get('admin/movies', [PostController::class, 'index'])->name('movie');
+// 映画の登録画面の表示
+Route::get('admin/movies/create', [PostController::class, 'create'])->name('movie.create');
+// 映画の登録処理
+Route::post('admin/movies/store', [PostController::class, 'store'])->name('movie.store');

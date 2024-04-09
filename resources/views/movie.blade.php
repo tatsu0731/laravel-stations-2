@@ -7,6 +7,11 @@
     <title>Practice</title>
 </head>
 <body>
+    @if (session('message'))
+        <div>
+            {{session('message')}}
+        </div>
+    @endif
     <ul>
     @foreach ($movies as $movie)
         <table>
@@ -20,7 +25,7 @@
             <tr>
                 <td>{{ $movie->title }}</td>
                 <td>
-                    <img src={{ $movie->image_url }} alt="" width="40">
+                    <img src="{{ $movie->image_url }}" alt="" width="40">
                 </td>
                 <td>{{ $movie->published_year }}</td>
                 @if ( $movie->is_showing )
@@ -28,7 +33,7 @@
                 @else
                 <td>上映予定</td>
                 @endif
-                <td>{{ $movie->description }}</td>
+                <td>{!! nl2br(e($movie->description)) !!}</td>
             </tr>
         </table>
     @endforeach
