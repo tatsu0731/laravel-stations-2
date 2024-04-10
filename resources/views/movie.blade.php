@@ -13,7 +13,6 @@
         </div>
     @endif
     <ul>
-    @foreach ($movies as $movie)
         <table>
             <tr>
                 <th>映画タイトル</th>
@@ -21,7 +20,9 @@
                 <th>公開年</th>
                 <th>現在上映中かどうか</th>
                 <th>概要</th>
+                <th>ボタン</th>
             </tr>
+        @foreach ($movies as $movie)
             <tr>
                 <td>{{ $movie->title }}</td>
                 <td>
@@ -34,9 +35,13 @@
                 <td>上映予定</td>
                 @endif
                 <td>{!! nl2br(e($movie->description)) !!}</td>
+                <td>
+                    <a href="{{ route('movie.edit', $movie->id) }}">編集する</a>
+                </td>
             </tr>
+        @endforeach
         </table>
-    @endforeach
     </ul>
+    <a href="{{ route('movie.create') }}">映画を新規登録する</a>
 </body>
 </html>

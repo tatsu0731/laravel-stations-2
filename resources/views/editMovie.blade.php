@@ -7,40 +7,36 @@
     <title>Practice</title>
 </head>
 <body>
-    <h1>新規映画登録画面</h1>
+    <h1>映画編集画面</h1>
     @foreach ($errors->all() as $error)
         <li>{{$error}}</li>
     @endforeach
-    @if (session('message'))
-        <div>
-            {{session('message')}}
-        </div>
-    @endif
-    <form action="{{ route('movie.store') }}" method="POST">
+    <form action="{{ route('movie.update', $movie->id) }}" method="POST">
         @csrf
+        @method('PATCH')
         <div>
             <label for="title">映画タイトル</label>
-            <input type="text" name="title" value="{{ old('title') }}">
+            <input type="text" name="title" id="title" value="{{ $movie->title }}">
         </div>
         <div>
             <label for="image_url">画像URL</label>
-            <input type="text" name="image_url" value="{{ old('image_url') }}">
+            <input type="text" name="image_url" id="image_url" value="{{ $movie->image_url }}">
         </div>
         <div>
             <label for="published_year">公開年</label>
-            <input type="text" name="published_year" value="{{ old('published_year') }}">
+            <input type="text" name="published_year" value="{{ $movie->published_year }}">
         </div>
         <div>
             <label for="description">概要</label>
-            <textarea name="description" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
+            <textarea name="description" id="description" cols="30" rows="10">{{ $movie->description }}</textarea>
         </div>
         <div>
             <label for="is_showing">公開中である</label>
             <input type="hidden" name="is_showing" value="0">
-            <input type="checkbox" name="is_showing" value="1">
+            <input type="checkbox" name="is_showing" value="1" {{ $movie->is_showing ? 'checked' : '' }}>
         </div>
-        <button type="submit">送信</button>
+        <button type="submit">変更する</button>
+        <a href="{{ route('movie.index') }}">戻る</a>
     </form>
-    <a href="{{ route('movie.index') }}">戻る</a>
 </body>
 </html>

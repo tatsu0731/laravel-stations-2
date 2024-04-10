@@ -40,8 +40,11 @@ Route::get('/', function () {
 
 // Route::get('/getPractice', [PracticeController::class, 'getPractice']);
 // 映画一覧の取得
-Route::get('admin/movies', [PostController::class, 'index'])->name('movie');
+Route::get('admin/movies', [PostController::class, 'index'])->name('movie.index');
 // 映画の登録画面の表示
 Route::get('admin/movies/create', [PostController::class, 'create'])->name('movie.create');
 // 映画の登録処理
 Route::post('admin/movies/store', [PostController::class, 'store'])->name('movie.store');
+// idに対応するmoviesの編集画面を表示する
+Route::get('admin/movies/{id}/edit', [PostController::class, 'edit'])->name('movie.edit');
+Route::patch('admin/movies/{id}', [PostController::class, 'update'])->name('movie.update');
