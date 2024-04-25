@@ -64,4 +64,13 @@ class PostController extends Controller
             return back(); // 入力フォームに戻る
         }
     }
+    public function destroy(Request $request, $id) {
+        try {
+            $movie = Movie::findOrFail($id);
+            $movie->delete();
+            return redirect()->route('movie.index')->with('message', '映画が削除されました。');
+        } catch (QueryException $e) {
+            return redirect()->route('movie.index')->with('message', '映画の削除に失敗しました。');
+        }
+    }
 }

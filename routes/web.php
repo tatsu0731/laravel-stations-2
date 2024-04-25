@@ -48,3 +48,5 @@ Route::post('admin/movies/store', [PostController::class, 'store'])->name('movie
 // idに対応するmoviesの編集画面を表示する
 Route::get('admin/movies/{id}/edit', [PostController::class, 'edit'])->name('movie.edit');
 Route::patch('admin/movies/{id}/update', [PostController::class, 'update'])->name('movie.update');
+// idに対応するmovieの削除
+Route::delete('admin/movies/{id}/destroy', [PostController::class, 'destroy'])->name('movie.destroy');
