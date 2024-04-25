@@ -8,7 +8,8 @@ use App\Models\Movie;
 class PostController extends Controller
 {
     public function index() {
-        $movies = Movie::all();
+        // $movies = Movie::all();
+        $movies = Movie::paginate(10);
         return view('movie', compact('movies'));
     }
 

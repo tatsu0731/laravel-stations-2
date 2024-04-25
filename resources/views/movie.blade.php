@@ -52,6 +52,9 @@
         @endforeach
         </table>
     </ul>
+    <div>
+        {{ $movies->links() }}
+    </div>
     <a href="{{ route('movie.create') }}">映画を新規登録する</a>
 </body>
 </html>
